@@ -6,8 +6,8 @@ import './PathfindingVisualizer.css';
 
 const START_NODE_ROW = 5;
 const START_NODE_COL = 5;
-const FINISH_NODE_ROW = 6;
-const FINISH_NODE_COL = 6;
+const FINISH_NODE_ROW = 15;
+const FINISH_NODE_COL = 15;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -50,7 +50,7 @@ export default class PathfindingVisualizer extends Component {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-      }, 1000 * i);
+      }, 10 * i);
     }
   }
 
@@ -69,7 +69,6 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-    console.log(visitedNodesInOrder);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     //console.log(nodesInShortestPathOrder);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
@@ -119,7 +118,6 @@ const getInitialGrid = () => {
   for (let row = 0; row < 20; row++) {
     const currentRow = [];
     for (let col = 0; col < 50; col++) {
-      //console.log(createNode(col,row));
       currentRow.push(createNode(col, row));
     }
     grid.push(currentRow);
